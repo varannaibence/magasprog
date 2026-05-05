@@ -18,18 +18,19 @@ Ez egy gyors, de eleg atfogo puska a mostani ZH-tipusu feladatokhoz. A cel: ha r
 - [12. Oszloponkenti max-min kulonbseg](#12-oszloponkenti-max-min-kulonbseg)
 - [13. Főátló és mellékátló](#13-főátló-és-mellékátló)
 - [14. array](#14-array)
-- [15. Struct](#15-struct)
-- [16. Rendezés sort-tal](#16-rendezés-sort-tal)
-- [17. Fajlkezeles](#17-fajlkezeles)
-- [18. Vector](#18-vector)
-- [19. String es karakter](#19-string-es-karakter)
-- [20. Betugyakorisag](#20-betugyakorisag)
-- [21. Stringstream](#21-stringstream)
-- [22. Teljes fajlos betustatisztika minta](#22-teljes-fajlos-betustatisztika-minta)
-- [23. Programozasi tetelek](#23-programozasi-tetelek)
-- [24. Tipikus ZH hibak](#24-tipikus-zh-hibak)
-- [25. ZH gyors stratégia](#25-zh-gyors-stratégia)
-- [26. Mini fordítási parancsok](#26-mini-fordítási-parancsok)
+- [15. Pointerek](#15-pointerek)
+- [16. Struct](#16-struct)
+- [17. Rendezés sort-tal](#17-rendezés-sort-tal)
+- [18. Fajlkezeles](#18-fajlkezeles)
+- [19. Vector](#19-vector)
+- [20. String es karakter](#20-string-es-karakter)
+- [21. Betugyakorisag](#21-betugyakorisag)
+- [22. Stringstream](#22-stringstream)
+- [23. Teljes fajlos betustatisztika minta](#23-teljes-fajlos-betustatisztika-minta)
+- [24. Programozasi tetelek](#24-programozasi-tetelek)
+- [25. Tipikus ZH hibak](#25-tipikus-zh-hibak)
+- [26. ZH gyors stratégia](#26-zh-gyors-stratégia)
+- [27. Mini fordítási parancsok](#27-mini-fordítási-parancsok)
 
 ## Programozasi Tetelek Gyorslinkek
 
@@ -466,7 +467,207 @@ for (double x : atlagok) {
 }
 ```
 
-## 15. Struct
+## 15. Pointerek
+
+A pointer egy olyan valtozo, amely egy masik valtozo memoria-cimet tarolja.
+
+### Alap pointer
+
+```cpp
+int x = 10;
+int* p = &x;
+```
+
+Mit jelent?
+
+```cpp
+&x   // x memoria-cime
+p    // a pointerben tarolt cim
+*p   // az a valtozo, amire p mutat
+```
+
+Pelda:
+
+```cpp
+int x = 10;
+int* p = &x;
+
+cout << x << endl;   // 10
+cout << *p << endl;  // 10
+```
+
+### Dereferalas
+
+A `*p` azt jelenti: menj oda, ahova a pointer mutat, es az ottani ertekkel dolgozz.
+
+```cpp
+int x = 10;
+int* p = &x;
+
+*p = 25;
+
+cout << x << endl; // 25
+```
+
+Ez azert 25, mert `p` az `x`-re mutatott.
+
+### Pointer es referencia kulonbseg
+
+Referencia:
+
+```cpp
+void novel(int& x) {
+    x++;
+}
+```
+
+Pointer:
+
+```cpp
+void novel(int* p) {
+    (*p)++;
+}
+```
+
+Hasznalat:
+
+```cpp
+int a = 5;
+
+novel(a);   // referencias verzio
+novel(&a);  // pointeres verzio
+```
+
+ZH-ra egyszeru szabaly:
+
+- Ha `int& x`, akkor siman `x`-et irsz a fuggvenyben.
+- Ha `int* p`, akkor az ertekhez `*p` kell.
+- Ha egy valtozo cime kell, akkor `&valtozo`.
+
+### Pointer fuggvenyparameterkent
+
+```cpp
+void nullaz(int* p) {
+    *p = 0;
+}
+
+int main() {
+    int x = 12;
+    nullaz(&x);
+    cout << x << endl; // 0
+}
+```
+
+### Tomb es pointer kapcsolata
+
+Egy tomb neve sok helyzetben ugy viselkedik, mint az elso elem cime.
+
+```cpp
+int t[3] = {10, 20, 30};
+
+cout << t[0] << endl;   // 10
+cout << *t << endl;     // 10
+cout << *(t + 1) << endl; // 20
+```
+
+Ezert mukodik ez:
+
+```cpp
+void kiir(int* t, int n) {
+    for (int i = 0; i < n; i++) {
+        cout << t[i] << " ";
+    }
+}
+```
+
+Hivas:
+
+```cpp
+int tomb[5] = {1, 2, 3, 4, 5};
+kiir(tomb, 5);
+```
+
+### Dinamikus tomb
+
+Ha futas kozben derul ki a meret:
+
+```cpp
+int n;
+cin >> n;
+
+int* t = new int[n];
+
+for (int i = 0; i < n; i++) {
+    cin >> t[i];
+}
+
+delete[] t;
+```
+
+Fontos: amit `new[]`-val foglalsz, azt `delete[]`-val szabaditod fel.
+
+### Dinamikus tomb visszaadasa fuggvenybol
+
+```cpp
+int* letrehoz(int n) {
+    int* t = new int[n];
+
+    for (int i = 0; i < n; i++) {
+        t[i] = 0;
+    }
+
+    return t;
+}
+```
+
+Hasznalat:
+
+```cpp
+int* tomb = letrehoz(5);
+
+// munka a tombbel
+
+delete[] tomb;
+```
+
+Megjegyzes: ha lehet, ZH-n `array` vagy `vector` kenyelmesebb, de pointeres feladatnal ez kellhet.
+
+### nullptr
+
+Ha egy pointer nem mutat sehova:
+
+```cpp
+int* p = nullptr;
+```
+
+Hasznalat elott ellenorzes:
+
+```cpp
+if (p != nullptr) {
+    cout << *p << endl;
+}
+```
+
+### Gyakori pointer hibak
+
+- `int* p;` csak letrehoz egy pointert, de nem biztos, hogy ervenyes helyre mutat.
+- `*p = 5;` csak akkor jo, ha `p` mar ervenyes cimre mutat.
+- `new[]` utan `delete[]` kell, nem sima `delete`.
+- A `&` cimkepzes, a `*` pointer deklaracional pointert jelent, hasznalatnal dereferalast.
+
+Mini puska:
+
+```cpp
+int x = 5;
+int* p = &x;
+
+cout << x;   // ertek
+cout << &x;  // cim
+cout << p;   // cim
+cout << *p;  // ertek
+```
+
+## 16. Struct
 
 Pelda:
 
@@ -511,7 +712,7 @@ for (int i = 0; i < 5; i++) {
 }
 ```
 
-## 16. Rendezés `sort`-tal
+## 17. Rendezés `sort`-tal
 
 Kell:
 
@@ -556,7 +757,7 @@ sort(eleje, vege);
 
 Tehat `bananok + 5` az 5. elem utani hely.
 
-## 17. Fajlkezeles
+## 18. Fajlkezeles
 
 Olvasas:
 
@@ -589,7 +790,7 @@ while (getline(bemenet, sor)) {
 }
 ```
 
-## 18. Vector
+## 19. Vector
 
 Dinamikus tomb.
 
@@ -619,7 +820,7 @@ for (int i = 0; i < sorok.size(); i++) {
 }
 ```
 
-## 19. String es karakter
+## 20. String es karakter
 
 String hossza:
 
@@ -661,7 +862,7 @@ Nagybetu atalakitasa kisbetuve:
 ch = ch - 'A' + 'a';
 ```
 
-## 20. Betugyakorisag
+## 21. Betugyakorisag
 
 Angol abc-re:
 
@@ -723,7 +924,7 @@ kimenet << "Szamossaga: " << minDb << endl;
 kimenet << "Nagybetuk szama: " << nagybetuk << endl;
 ```
 
-## 21. Stringstream
+## 22. Stringstream
 
 Ha egy sort szavakra vagy szamokra akarsz bontani:
 
@@ -767,7 +968,7 @@ while (ss >> szam) {
 double atlag = (double)osszeg / darab;
 ```
 
-## 22. Teljes fajlos betustatisztika minta
+## 23. Teljes fajlos betustatisztika minta
 
 ```cpp
 #include <fstream>
@@ -826,7 +1027,7 @@ int main() {
 }
 ```
 
-## 23. Programozasi tetelek
+## 24. Programozasi tetelek
 
 Forras es tovabbi olvasas: https://szit.hu/doku.php?id=oktatas:programozas:programozasi_tetelek:mondatszeru_leiras
 
@@ -1139,7 +1340,7 @@ for (int i = 0; i < n - 1; i++) {
 - Ha "ket csoport": szétválogatás.
 - Ha "rendezze": `sort`, ha engedett; különben buborék vagy rendezés cserével.
 
-## 24. Tipikus ZH hibak
+## 25. Tipikus ZH hibak
 
 - Elfelejted az `&` jelet, ezért a main-ben nem változik semmi.
 - Tömbnél 10 elem esetén az indexek `0..9`, nem `1..10`.
@@ -1152,7 +1353,7 @@ for (int i = 0; i < n - 1; i++) {
 - Osztásnál ha átlagot számolsz, legyen `double`: `(double)osszeg / darab`.
 - Nullával nem lehet osztani és maradékosan osztani sem: `a % 0` hibás.
 
-## 25. ZH gyors stratégia
+## 26. ZH gyors stratégia
 
 1. Először írd meg a structot vagy függvényfejet.
 2. Utána a beolvasást.
@@ -1162,7 +1363,7 @@ for (int i = 0; i < n - 1; i++) {
 6. Rendezésnél ha engedett a library, használd a `sort`-ot.
 7. Ha elakadsz, írj ki köztes értékeket `cout`-tal.
 
-## 26. Mini fordítási parancsok
+## 27. Mini fordítási parancsok
 
 Egy fájl fordítása:
 
