@@ -7,6 +7,7 @@ Ebben a mappaban a regi ZH feladatai vannak kulon fajlokra bontva.
 Nezd meg ezt is:
 
 - [PUSKA.md](PUSKA.md): rovid C++ mintak ZH-hoz
+- [../ZH_SEGEDLET.md](../ZH_SEGEDLET.md): atfogo, reszletesebb ZH segedlet
 
 ## Feladatok
 

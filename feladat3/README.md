@@ -2,6 +2,10 @@
 
 Ez a mappa a regi ZH mintajara keszult, de mas feladatokkal.
 
+Atfogo segedlet:
+
+- [../ZH_SEGEDLET.md](../ZH_SEGEDLET.md)
+
 ## Feladatok
 
 - `feladat01_lnko.cpp`: ket szam legnagyobb kozos osztoja
