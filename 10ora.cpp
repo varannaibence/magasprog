@@ -153,7 +153,7 @@ int main() {
 - vegyes adatfelvétel pl réka 20 160 60 legidősebb legfiatalabb életkor páros ilyenek
 
 prog tételek:
-programozási tetelek minta első oldal kb
+első oldal kb https://szit.hu/doku.php?id=oktatas:programozas:programozasi_tetelek:mondatszeru_leiras
 
 összegzés megszámlálás eldöntés keresés másolás kiválogatás szétválogatás rendezés előfordulhat 
 első rész a fontosabb
