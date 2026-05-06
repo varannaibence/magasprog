@@ -1,6 +1,7 @@
 #include <iostream>
 #include <map>
 #include <string>
+#include <algorithm>
 using namespace std;
 
 /*
@@ -39,6 +40,13 @@ int main() {
 
     cout << "Adj meg szavakat. A beolvasas vege: vege" << endl;
 
+    while (true) {
+        cin >> szo;
+        if (szo == "vege") {
+            break;
+        }
+        gyakorisag[szo]++;
+    }
     // Ide dolgozz:
     // 1. olvass be szavakat cin-nel
     // 2. ha a szo "vege", allj meg
@@ -46,13 +54,14 @@ int main() {
 
     cout << "Szavak gyakorisaga:" << endl;
 
-    // Ide dolgozz:
-    // jarj vegig a map elemein, es ird ki:
-    // szo: darabszam
+    for (const auto& par : gyakorisag) {
+        cout << par.first << ": " << par.second << endl;
+    }
 
-    // Plusz:
-    // keresd meg a leggyakoribb szot
-    // ird ki a kulonbozo szavak szamat
+    cout << "Leggyakoribb szo: " << gyakorisag.begin()->first << endl;
+
+    cout << "Kulonbozo szavak szama: " << gyakorisag.size() << endl;
+
 
     return 0;
 }
