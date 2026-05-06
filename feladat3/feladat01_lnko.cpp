@@ -12,8 +12,16 @@ Pelda:
 */
 
 int lnko(int a, int b) {
-    // Ide dolgozz.
-    return 0;
+    if (a == 0) return b;
+    if (b == 0) return a;
+    while (a != b) {
+        if (a > b) {
+            a -= b;
+        } else {
+            b -= a;
+        }
+    }
+    return a; // vagy b, mert a == b
 }
 
 int main() {

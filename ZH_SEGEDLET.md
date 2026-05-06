@@ -2,6 +2,8 @@
 
 Ez egy gyors, de eleg atfogo puska a mostani ZH-tipusu feladatokhoz. A cel: ha ranezel egy feladatra, felismerd, melyik mintat kell hasznalni.
 
+Kapcsolodo reszletesebb anyag: [Tanci C++ segedlet](tanci/TANCI_SEGEDLET.md)
+
 ## Content Table
 
 - [1. Alap include-ok](#1-alap-include-ok)

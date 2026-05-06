@@ -19,7 +19,7 @@ Irj ki az eredmeny.txt fajlba:
 */
 
 int main() {
-    ifstream bemenet("mondatok.txt");
+    ifstream bemenet("feladat3/mondatok.txt");
     ofstream kimenet("eredmeny.txt");
 
     if (!bemenet.is_open()) {
@@ -34,7 +34,40 @@ int main() {
         sorok.push_back(sor);
     }
 
-    // Ide dolgozz.
+    int sorSzam = sorok.size();
+    int szoSzam = 0;
+    string leghosszabbSzo;
+    int hatKarakterSzoSzam = 0;
+    int tobbMintHaromSzoSorSzam = 0;
+
+    for (const string& s : sorok) {
+        stringstream ss(s);
+        string szo;
+        int sorSzoSzam = 0;
+
+        while (ss >> szo) {
+            szoSzam++;
+            sorSzoSzam++;
+
+            if (szo.length() > leghosszabbSzo.length()) {
+                leghosszabbSzo = szo;
+            }
+
+            if (szo.length() >= 6) {
+                hatKarakterSzoSzam++;
+            }
+        }
+
+        if (sorSzoSzam > 3) {
+            tobbMintHaromSzoSorSzam++;
+        }
+    }
+
+    kimenet << "Sorok száma: " << sorSzam << endl;
+    kimenet << "Szavak száma: " << szoSzam << endl;
+    kimenet << "Leghosszabb szó: " << leghosszabbSzo << endl;
+    kimenet << "6 karakter vagy több: " << hatKarakterSzoSzam << endl;
+    kimenet << "Több mint 3 szó: " << tobbMintHaromSzoSorSzam << endl;
 
     return 0;
 }

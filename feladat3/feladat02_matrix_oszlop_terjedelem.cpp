@@ -16,7 +16,25 @@ maximum = 10, minimum = 3, kulonbseg = 7
 
 array<int, 4> oszlopTerjedelem(int matrix[4][4]) {
     array<int, 4> eredmeny{};
-    // Ide dolgozz.
+    for (int i = 0; i < 4; i++)
+    {
+        int oszlopMax = matrix[0][i];
+        int oszlopMin = matrix[0][i];
+
+        for (int j = 0; j < 4; j++)
+        {
+            if (matrix[j][i] > oszlopMax)
+            {
+                oszlopMax = matrix[j][i];
+            }
+            if (matrix[j][i] < oszlopMin)
+            {
+                oszlopMin = matrix[j][i];
+            }
+        }
+        eredmeny[i] = oszlopMax - oszlopMin;
+    }
+    
     return eredmeny;
 }
 

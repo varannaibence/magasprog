@@ -15,7 +15,14 @@ A main fuggvenyben ird ki a valtozok vegso allapotat.
 */
 
 void atrendez(int& a, int& b, int& c) {
-    // Ide dolgozz.
+    // a kozepso erteket irja felul 100-ra
+    b = 100;
+
+    // cserelje meg b es c erteket
+    swap(b, c);
+
+    // cserelje meg a es b erteket
+    swap(a, b);
 }
 
 int main() {

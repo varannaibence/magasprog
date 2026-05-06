@@ -69,6 +69,14 @@ Fuggveny: van visszateresi ertek.
 int osszeg(int a, int b) {
     return a + b;
 }
+
+cout << osszeg(3, 5) << endl;
+```
+
+Példa kimenet:
+
+```text
+8
 ```
 
 Rekurziv fibonacci, ahogy orai anyagban is szerepel:
@@ -81,6 +89,14 @@ int fibonacci(int n) {
 
     return fibonacci(n - 1) + fibonacci(n - 2);
 }
+
+cout << fibonacci(6) << endl;
+```
+
+Példa kimenet:
+
+```text
+8
 ```
 
 Faktorialis:
@@ -93,6 +109,14 @@ int fakt(int n) {
 
     return 1;
 }
+
+cout << fakt(5) << endl;
+```
+
+Példa kimenet:
+
+```text
+120
 ```
 
 ## 3. Ertek, referencia, pointer parameter
@@ -127,6 +151,13 @@ Hivas:
 int x = 2;
 int y = 4;
 csere2(x, y);
+cout << x << " " << y << endl;
+```
+
+Példa kimenet:
+
+```text
+4 2
 ```
 
 ### Pointer szerinti atadas
@@ -147,6 +178,13 @@ Hivas:
 int x = 2;
 int y = 4;
 csere3(&x, &y);
+cout << x << " " << y << endl;
+```
+
+Példa kimenet:
+
+```text
+4 2
 ```
 
 Gyors szabaly:
@@ -171,6 +209,17 @@ cout << &a << endl;  // a cime
 cout << p << endl;   // ugyanaz a cim
 cout << *p << endl;  // 10
 ```
+
+Példa kimenet alakja:
+
+```text
+10
+0x...
+0x...
+10
+```
+
+A ket cim ugyanaz lesz, de a pontos ertek gepenkent/futasonkent valtozhat.
 
 Dinamikus valtozo:
 
@@ -224,6 +273,15 @@ void tombkiir(int t[5]) {
     }
     cout << endl;
 }
+
+int t[5] = {4, 8, 1, 9, 2};
+tombkiir(t);
+```
+
+Példa kimenet:
+
+```text
+4 8 1 9 2
 ```
 
 Pointeres tomb minimum:
@@ -240,6 +298,15 @@ int minimum(int* t, int meret) {
 
     return m;
 }
+
+int t[5] = {4, 8, 1, 9, 2};
+cout << minimum(t, 5) << endl;
+```
+
+Példa kimenet:
+
+```text
+1
 ```
 
 4x4 matrix soronkenti bejaras:
@@ -251,6 +318,26 @@ for (int i = 0; i < 4; i++) {
     }
     cout << endl;
 }
+```
+
+Ha a matrix:
+
+```cpp
+int tomb[4][4] = {
+    {1, 2, 3, 4},
+    {5, 6, 7, 8},
+    {9, 10, 11, 12},
+    {13, 14, 15, 16}
+};
+```
+
+Példa kimenet:
+
+```text
+1 2 3 4
+5 6 7 8
+9 10 11 12
+13 14 15 16
 ```
 
 Soratlag:
@@ -299,6 +386,12 @@ for (double d : atlagok) {
 }
 ```
 
+Példa kimenet a fenti `1..16` matrixra:
+
+```text
+2.5 6.5 10.5 14.5
+```
+
 ## 7. Vector alapok
 
 Letrehozas:
@@ -311,6 +404,8 @@ Hozzaadas:
 
 ```cpp
 v.push_back(10);
+v.push_back(20);
+v.push_back(30);
 ```
 
 Bejaras indexszel:
@@ -327,6 +422,12 @@ Bejaras foreach-ciklussal:
 for (int i : v) {
     cout << i << " ";
 }
+```
+
+Példa kimenet:
+
+```text
+10 20 30
 ```
 
 Hasznos vector muveletek:
@@ -349,10 +450,33 @@ Rendezes:
 sort(v.begin(), v.end());
 ```
 
+Példa:
+
+```cpp
+vector<int> v = {5, 1, 9, 2};
+sort(v.begin(), v.end());
+
+for (int x : v) {
+    cout << x << " ";
+}
+```
+
+Példa kimenet:
+
+```text
+1 2 5 9
+```
+
 Csokkeno:
 
 ```cpp
 sort(v.begin(), v.end(), greater<int>());
+```
+
+Ugyanerre a vectorra a kimenet:
+
+```text
+9 5 2 1
 ```
 
 2D vector:
@@ -490,6 +614,14 @@ double toronyMagassag = 0;
 for (int i = 0; i < 5; i++) {
     toronyMagassag += dobozok[i].magassag;
 }
+
+cout << toronyMagassag << endl;
+```
+
+Példa, ha a magassagok `2, 4, 3, 5, 1`:
+
+```text
+15
 ```
 
 Struct vectorral:
@@ -513,6 +645,14 @@ for (int i = 0; i < allatv.size(); i++) {
         legidosebb = allatv[i];
     }
 }
+
+cout << legidosebb.nev << " " << legidosebb.kor << endl;
+```
+
+Példa kimenet:
+
+```text
+Bodri 12
 ```
 
 ## 10. Operator tulterheles
@@ -545,6 +685,16 @@ Hasznalat:
 ```cpp
 vector<int> v = {1, 2, 3};
 v << 4 << 5 << 6;
+
+for (int x : v) {
+    cout << x << " ";
+}
+```
+
+Példa kimenet:
+
+```text
+1 2 3 4 5 6
 ```
 
 Ket vector osszefuzese `+` operatorral:
@@ -596,6 +746,18 @@ cin >> sz;
 cout << sz << endl;
 ```
 
+Példa bemenet:
+
+```text
+Anna 20
+```
+
+Példa kimenet:
+
+```text
+Anna 20
+```
+
 ## 11. Fajlkezeles
 
 Iras:
@@ -604,6 +766,12 @@ Iras:
 ofstream file("filename.txt");
 file << "alma korte" << endl;
 file.close();
+```
+
+A `filename.txt` tartalma ez lesz:
+
+```text
+alma korte
 ```
 
 Olvasas soronkent:
@@ -619,6 +787,20 @@ while (getline(readFile, text)) {
 readFile.close();
 ```
 
+Ha a fajl tartalma:
+
+```text
+alma korte
+barack szilva
+```
+
+Példa kimenet:
+
+```text
+alma korte
+barack szilva
+```
+
 Olvasas szavankent:
 
 ```cpp
@@ -628,6 +810,15 @@ string text;
 while (readFile >> text) {
     cout << text << endl;
 }
+```
+
+Ugyanarra a fajlra a kimenet:
+
+```text
+alma
+korte
+barack
+szilva
 ```
 
 Structok fajlba:
@@ -652,6 +843,20 @@ vector<Allat> allatv;
 while (inallat >> allat.nev >> allat.kor) {
     allatv.push_back(allat);
 }
+```
+
+Ha az `allatok.txt` tartalma:
+
+```text
+Bodri 12
+Cirmi 7
+```
+
+A vectorba ket `Allat` kerul:
+
+```text
+allatv[0]: Bodri 12
+allatv[1]: Cirmi 7
 ```
 
 Fajlnyitasi modok:
@@ -694,6 +899,20 @@ while (getline(be, sor)) {
 }
 ```
 
+Példa fajltartalom:
+
+```text
+10 20 30
+5 15
+```
+
+Ebbol ez lesz:
+
+```text
+adatok[0]: 10 20 30
+adatok[1]: 5 15
+```
+
 Sor atlaga:
 
 ```cpp
@@ -706,6 +925,13 @@ for (int j = 0; j < adatok[i].size(); j++) {
 double atlag = (double)osszeg / adatok[i].size();
 ```
 
+Példa:
+
+```text
+10 20 30 -> atlag: 20
+5 15 -> atlag: 10
+```
+
 Igen/Nem fajlba:
 
 ```cpp
@@ -714,6 +940,13 @@ if (atlag < 37) {
 } else {
     ki << "Nem" << endl;
 }
+```
+
+Példa kimeneti fajl:
+
+```text
+Igen
+Igen
 ```
 
 ## 13. Kontenerek: list, set, map
@@ -727,9 +960,20 @@ l.push_front(10);
 l.push_back(20);
 
 cout << l.front() << " " << l.back() << endl;
-l.pop_front();
-l.pop_back();
 l.sort();
+```
+
+Példa: ha eloszor `10`, majd `20` kerul bele, a `front/back` kimenete:
+
+```text
+10 20
+```
+
+Torles:
+
+```cpp
+l.pop_front(); // elso elem torlese
+l.pop_back();  // utolso elem torlese
 ```
 
 Iteratoros bejaras:
@@ -740,6 +984,12 @@ list<int>::iterator it;
 for (it = l.begin(); it != l.end(); it++) {
     cout << *it << " ";
 }
+```
+
+Példa kimenet:
+
+```text
+10 20
 ```
 
 ### set
@@ -754,6 +1004,8 @@ s.insert(10);
 s.insert(50);
 ```
 
+Ebben a `50` csak egyszer fog szerepelni, mert a `set` nem enged duplikatumot.
+
 Bejaras:
 
 ```cpp
@@ -762,11 +1014,32 @@ for (int i : s) {
 }
 ```
 
+Példa kimenet:
+
+```text
+10 50
+```
+
 Kereses:
 
 ```cpp
 cout << s.contains(50) << endl;
 cout << *s.find(20) << endl;
+```
+
+Példa:
+
+```cpp
+set<int> s = {10, 20, 50};
+cout << s.contains(50) << endl;
+cout << *s.find(20) << endl;
+```
+
+Példa kimenet:
+
+```text
+1
+20
 ```
 
 Vector duplikatummentesitese:
@@ -777,6 +1050,12 @@ set<int> sv(v.begin(), v.end());
 
 v.clear();
 v.assign(sv.begin(), sv.end());
+```
+
+Példa kimenet bejaras utan:
+
+```text
+1 3 5
 ```
 
 ### map
@@ -791,6 +1070,12 @@ m["Zoli"] = "Zoltan";
 m["Zoli"] = "Masik ertek";
 ```
 
+A `Zoli` kulcshoz tartozo ertek a vegen:
+
+```text
+Masik ertek
+```
+
 Bejaras:
 
 ```cpp
@@ -798,6 +1083,15 @@ for (pair<string, string> a : m) {
     cout << a.first << " " << a.second << endl;
 }
 ```
+
+Példa kimenet:
+
+```text
+Pista Istvan
+Zoli Masik ertek
+```
+
+A `map` kulcs szerint rendezve jarja be az elemeket.
 
 Szavak gyakorisaga map-pel:
 
@@ -815,11 +1109,27 @@ while (ifile >> gyumi) {
 }
 ```
 
+Ha a `gyumik.txt` tartalma:
+
+```text
+alma korte alma szilva korte alma
+```
+
+A map tartalma:
+
+```text
+alma 3
+korte 2
+szilva 1
+```
+
 Rovidebben:
 
 ```cpp
 gyumolcsok[gyumi]++;
 ```
+
+Ez ugyanazt csinalja: ha meg nincs ilyen kulcs, letrehozza `0` ertekkel, majd novel rajta egyet.
 
 ## 14. ZH-gyak mintak
 
@@ -848,6 +1158,18 @@ int legnagyobbFibonacci(int a, int b) {
 }
 ```
 
+Példa:
+
+```cpp
+cout << legnagyobbFibonacci(10, 40) << endl;
+```
+
+Példa kimenet:
+
+```text
+34
+```
+
 ### Karakter masolasa tombbol referenciaval
 
 ```cpp
@@ -856,6 +1178,21 @@ void masolKarakter(char& a, const char tomb[10], int b) {
         a = tomb[b];
     }
 }
+```
+
+Példa:
+
+```cpp
+char betu = '?';
+char tomb[10] = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j'};
+masolKarakter(betu, tomb, 3);
+cout << betu << endl;
+```
+
+Példa kimenet:
+
+```text
+d
 ```
 
 ### Legrovidebb es leghosszabb szo
@@ -883,6 +1220,22 @@ for (int i = 1; i < n; i++) {
         leghosszabb = szo;
     }
 }
+```
+
+Példa bemenet:
+
+```text
+4
+alma
+korte
+meggy
+ananász
+```
+
+Példa eredmeny:
+
+```text
+alma ananász
 ```
 
 ### Randomok fajl soratlaggal
@@ -923,6 +1276,20 @@ for (int i = 0; i < adatok.size(); i++) {
         ki << "Nem" << endl;
     }
 }
+```
+
+Példa `randomok.txt`:
+
+```text
+10 20 30
+40 50
+```
+
+Példa `kisebb.txt`:
+
+```text
+Igen
+Nem
 ```
 
 ## 15. Tipikus hibak
