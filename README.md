@@ -7,6 +7,7 @@
 | [PUSKA.md](PUSKA.md) | **ZH puska — copy-paste kész kód, `^^^` jelölésekkel** |
 | [ZH_SEGEDLET.md](ZH_SEGEDLET.md) | Részletes segedlet magyarázatokkal (tanuláshoz) |
 | [tanci/TANCI_SEGEDLET.md](tanci/TANCI_SEGEDLET.md) | Tanci C++ segedlet (pointer, vector, struct, map...) |
+| [ALGORITHM_USE_CASES.md](ALGORITHM_USE_CASES.md) | **STL algorithm life hacks — egysorosok, use case-ek** |
 
 ## Gyakorló feladatok
 
